@@ -13,7 +13,7 @@
             http://www.springframework.org/schema/cache
             http://www.springframework.org/schema/cache/spring-cache.xsd">
     <!-- 扫描service、dao组件 -->
-    <context:component-scan base-package="com.storm"/>
+    <context:component-scan base-package="com.storm.luban"/>
     <!-- 分解配置 jdbc.properites -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
     <!-- 数据源c3p0 -->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.MaterialTypeDAO">
+    <resultMap id="resultMap" type="com.storm.luban.bean.MaterialType">
+        <id column="type_id" property="typeId" jdbcType="BIGINT"/>
+        <result column="product_id" property="productId" jdbcType="BIGINT"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="compute_mode" property="computeMode" jdbcType="INTEGER"/>
+        <result column="unit" property="unit" jdbcType="VARCHAR"/>
+        <result column="short_code" property="shortCode" jdbcType="VARCHAR"/>
+        <collection property="attrs" column="{typeId=type_id}"
+                    ofType="com.storm.luban.bean.MaterialAttrTemplate"
+                    select="com.storm.luban.dao.MaterialAttrTemplateDAO.selectByTypeId">
+        </collection>
+    </resultMap>
+    <sql id="allColumn">
+    type_id, product_id, `NAME`, CODE, STATUS, parent_id, compute_mode, unit, short_code
+  </sql>
+    <select id="getSysMaterialType" resultMap="resultMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM
+        material_type
+        WHERE
+        product_id = #{productId}
+    </select>
+</mapper>
