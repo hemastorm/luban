@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.MeteralAttrTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.luban.bean.MaterialAttrTemplate" >
+    <id column="id" property="id" jdbcType="DECIMAL" />
+    <result column="material_type_id" property="materialTypeId" jdbcType="DECIMAL" />
+    <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+    <result column="attr_code" property="attrCode" jdbcType="VARCHAR" />
+    <result column="is_computer" property="isComputer" jdbcType="INTEGER" />
+    <result column="is_need" property="isNeed" jdbcType="INTEGER" />
+    <result column="short_code" property="shortCode" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, material_type_id, attr_name, attr_code, is_computer, is_need, short_code, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from meteral_attr_template
+    where id = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from meteral_attr_template
+    where id = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.storm.luban.bean.MaterialAttrTemplate" >
+    insert into meteral_attr_template (id, material_type_id, attr_name, 
+      attr_code, is_computer, is_need, 
+      short_code, state)
+    values (#{id,jdbcType=DECIMAL}, #{materialTypeId,jdbcType=DECIMAL}, #{attrName,jdbcType=VARCHAR}, 
+      #{attrCode,jdbcType=VARCHAR}, #{isComputer,jdbcType=INTEGER}, #{isNeed,jdbcType=INTEGER}, 
+      #{shortCode,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.luban.bean.MaterialAttrTemplate" >
+    insert into meteral_attr_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="materialTypeId != null" >
+        material_type_id,
+      </if>
+      <if test="attrName != null" >
+        attr_name,
+      </if>
+      <if test="attrCode != null" >
+        attr_code,
+      </if>
+      <if test="isComputer != null" >
+        is_computer,
+      </if>
+      <if test="isNeed != null" >
+        is_need,
+      </if>
+      <if test="shortCode != null" >
+        short_code,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="materialTypeId != null" >
+        #{materialTypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="attrName != null" >
+        #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrCode != null" >
+        #{attrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isComputer != null" >
+        #{isComputer,jdbcType=INTEGER},
+      </if>
+      <if test="isNeed != null" >
+        #{isNeed,jdbcType=INTEGER},
+      </if>
+      <if test="shortCode != null" >
+        #{shortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.luban.bean.MaterialAttrTemplate" >
+    update meteral_attr_template
+    <set >
+      <if test="materialTypeId != null" >
+        material_type_id = #{materialTypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="attrName != null" >
+        attr_name = #{attrName,jdbcType=VARCHAR},
+      </if>
+      <if test="attrCode != null" >
+        attr_code = #{attrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isComputer != null" >
+        is_computer = #{isComputer,jdbcType=INTEGER},
+      </if>
+      <if test="isNeed != null" >
+        is_need = #{isNeed,jdbcType=INTEGER},
+      </if>
+      <if test="shortCode != null" >
+        short_code = #{shortCode,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.luban.bean.MaterialAttrTemplate" >
+    update meteral_attr_template
+    set material_type_id = #{materialTypeId,jdbcType=DECIMAL},
+      attr_name = #{attrName,jdbcType=VARCHAR},
+      attr_code = #{attrCode,jdbcType=VARCHAR},
+      is_computer = #{isComputer,jdbcType=INTEGER},
+      is_need = #{isNeed,jdbcType=INTEGER},
+      short_code = #{shortCode,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

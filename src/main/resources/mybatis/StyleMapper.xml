@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.StyleMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.luban.bean.Style" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="user_id" property="userId" jdbcType="DECIMAL" />
+    <result column="product_id" property="productId" jdbcType="DECIMAL" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="min_area" property="minArea" jdbcType="REAL" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="adjust_size" property="adjustSize" jdbcType="INTEGER" />
+    <result column="ext_price" property="extPrice" jdbcType="REAL" />
+    <result column="img_path" property="imgPath" jdbcType="VARCHAR" />
+    <result column="price_type" property="priceType" jdbcType="INTEGER" />
+    <result column="formula_name" property="formulaName" jdbcType="VARCHAR" />
+    <result column="formula_code" property="formulaCode" jdbcType="VARCHAR" />
+    <result column="formula_version" property="formulaVersion" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="creater" property="creater" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, user_id, product_id, product_name, price, min_area, color, adjust_size, ext_price, 
+    img_path, price_type, formula_name, formula_code, formula_version, note, creater, 
+    created, modifier, modified
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from style
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from style
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.storm.luban.bean.Style" >
+    insert into style (ID, user_id, product_id, 
+      product_name, price, min_area, 
+      color, adjust_size, ext_price, 
+      img_path, price_type, formula_name, 
+      formula_code, formula_version, note, 
+      creater, created, modifier, 
+      modified)
+    values (#{id,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, #{productId,jdbcType=DECIMAL}, 
+      #{productName,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{minArea,jdbcType=REAL}, 
+      #{color,jdbcType=VARCHAR}, #{adjustSize,jdbcType=INTEGER}, #{extPrice,jdbcType=REAL}, 
+      #{imgPath,jdbcType=VARCHAR}, #{priceType,jdbcType=INTEGER}, #{formulaName,jdbcType=VARCHAR}, 
+      #{formulaCode,jdbcType=VARCHAR}, #{formulaVersion,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modified,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.luban.bean.Style" >
+    insert into style
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="minArea != null" >
+        min_area,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="adjustSize != null" >
+        adjust_size,
+      </if>
+      <if test="extPrice != null" >
+        ext_price,
+      </if>
+      <if test="imgPath != null" >
+        img_path,
+      </if>
+      <if test="priceType != null" >
+        price_type,
+      </if>
+      <if test="formulaName != null" >
+        formula_name,
+      </if>
+      <if test="formulaCode != null" >
+        formula_code,
+      </if>
+      <if test="formulaVersion != null" >
+        formula_version,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="creater != null" >
+        creater,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="minArea != null" >
+        #{minArea,jdbcType=REAL},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustSize != null" >
+        #{adjustSize,jdbcType=INTEGER},
+      </if>
+      <if test="extPrice != null" >
+        #{extPrice,jdbcType=REAL},
+      </if>
+      <if test="imgPath != null" >
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="priceType != null" >
+        #{priceType,jdbcType=INTEGER},
+      </if>
+      <if test="formulaName != null" >
+        #{formulaName,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaCode != null" >
+        #{formulaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaVersion != null" >
+        #{formulaVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.luban.bean.Style" >
+    update style
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="minArea != null" >
+        min_area = #{minArea,jdbcType=REAL},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="adjustSize != null" >
+        adjust_size = #{adjustSize,jdbcType=INTEGER},
+      </if>
+      <if test="extPrice != null" >
+        ext_price = #{extPrice,jdbcType=REAL},
+      </if>
+      <if test="imgPath != null" >
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="priceType != null" >
+        price_type = #{priceType,jdbcType=INTEGER},
+      </if>
+      <if test="formulaName != null" >
+        formula_name = #{formulaName,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaCode != null" >
+        formula_code = #{formulaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaVersion != null" >
+        formula_version = #{formulaVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        creater = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.luban.bean.Style" >
+    update style
+    set user_id = #{userId,jdbcType=DECIMAL},
+      product_id = #{productId,jdbcType=DECIMAL},
+      product_name = #{productName,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      min_area = #{minArea,jdbcType=REAL},
+      color = #{color,jdbcType=VARCHAR},
+      adjust_size = #{adjustSize,jdbcType=INTEGER},
+      ext_price = #{extPrice,jdbcType=REAL},
+      img_path = #{imgPath,jdbcType=VARCHAR},
+      price_type = #{priceType,jdbcType=INTEGER},
+      formula_name = #{formulaName,jdbcType=VARCHAR},
+      formula_code = #{formulaCode,jdbcType=VARCHAR},
+      formula_version = #{formulaVersion,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modified = #{modified,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

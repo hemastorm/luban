@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.FormulaMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.luban.bean.FormulaMaterial" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="user_id" property="userId" jdbcType="DECIMAL" />
+    <result column="formula_id" property="formulaId" jdbcType="DECIMAL" />
+    <result column="type_id" property="typeId" jdbcType="DECIMAL" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="computer_mode" property="computerMode" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="short_code" property="shortCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, user_id, formula_id, type_id, unit, computer_mode, STATUS, short_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from formula_material
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from formula_material
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.storm.luban.bean.FormulaMaterial" >
+    insert into formula_material (ID, user_id, formula_id, 
+      type_id, unit, computer_mode, 
+      STATUS, short_code)
+    values (#{id,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, #{formulaId,jdbcType=DECIMAL}, 
+      #{typeId,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, #{computerMode,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{shortCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.luban.bean.FormulaMaterial" >
+    insert into formula_material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="formulaId != null" >
+        formula_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="computerMode != null" >
+        computer_mode,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="shortCode != null" >
+        short_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="formulaId != null" >
+        #{formulaId,jdbcType=DECIMAL},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="computerMode != null" >
+        #{computerMode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shortCode != null" >
+        #{shortCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.luban.bean.FormulaMaterial" >
+    update formula_material
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="formulaId != null" >
+        formula_id = #{formulaId,jdbcType=DECIMAL},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="computerMode != null" >
+        computer_mode = #{computerMode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="shortCode != null" >
+        short_code = #{shortCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.luban.bean.FormulaMaterial" >
+    update formula_material
+    set user_id = #{userId,jdbcType=DECIMAL},
+      formula_id = #{formulaId,jdbcType=DECIMAL},
+      type_id = #{typeId,jdbcType=DECIMAL},
+      unit = #{unit,jdbcType=VARCHAR},
+      computer_mode = #{computerMode,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      short_code = #{shortCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

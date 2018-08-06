@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.StyleMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.luban.bean.StyleMaterial" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="user_id" property="userId" jdbcType="DECIMAL" />
+    <result column="style_id" property="styleId" jdbcType="DECIMAL" />
+    <result column="type_code" property="typeCode" jdbcType="VARCHAR" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="type_short" property="typeShort" jdbcType="VARCHAR" />
+    <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+    <result column="material_code" property="materialCode" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+    <result column="is_formula_material" property="isFormulaMaterial" jdbcType="INTEGER" />
+    <result column="computer_mode" property="computerMode" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.storm.luban.bean.StyleMaterial" extends="BaseResultMap" >
+    <result column="formula" property="formula" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, user_id, style_id, type_code, type_name, type_short, material_name, material_code, 
+    color, is_formula_material, computer_mode, num, STATUS
+  </sql>
+  <sql id="Blob_Column_List" >
+    formula
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from style_material
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from style_material
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.storm.luban.bean.StyleMaterial" >
+    insert into style_material (ID, user_id, style_id, 
+      type_code, type_name, type_short, 
+      material_name, material_code, color, 
+      is_formula_material, computer_mode, num, 
+      STATUS, formula)
+    values (#{id,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, #{styleId,jdbcType=DECIMAL}, 
+      #{typeCode,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, #{typeShort,jdbcType=VARCHAR}, 
+      #{materialName,jdbcType=VARCHAR}, #{materialCode,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
+      #{isFormulaMaterial,jdbcType=INTEGER}, #{computerMode,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{formula,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.luban.bean.StyleMaterial" >
+    insert into style_material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="styleId != null" >
+        style_id,
+      </if>
+      <if test="typeCode != null" >
+        type_code,
+      </if>
+      <if test="typeName != null" >
+        type_name,
+      </if>
+      <if test="typeShort != null" >
+        type_short,
+      </if>
+      <if test="materialName != null" >
+        material_name,
+      </if>
+      <if test="materialCode != null" >
+        material_code,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+      <if test="isFormulaMaterial != null" >
+        is_formula_material,
+      </if>
+      <if test="computerMode != null" >
+        computer_mode,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="formula != null" >
+        formula,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="styleId != null" >
+        #{styleId,jdbcType=DECIMAL},
+      </if>
+      <if test="typeCode != null" >
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeShort != null" >
+        #{typeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialCode != null" >
+        #{materialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="isFormulaMaterial != null" >
+        #{isFormulaMaterial,jdbcType=INTEGER},
+      </if>
+      <if test="computerMode != null" >
+        #{computerMode,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="formula != null" >
+        #{formula,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.luban.bean.StyleMaterial" >
+    update style_material
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="styleId != null" >
+        style_id = #{styleId,jdbcType=DECIMAL},
+      </if>
+      <if test="typeCode != null" >
+        type_code = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeShort != null" >
+        type_short = #{typeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        material_name = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialCode != null" >
+        material_code = #{materialCode,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="isFormulaMaterial != null" >
+        is_formula_material = #{isFormulaMaterial,jdbcType=INTEGER},
+      </if>
+      <if test="computerMode != null" >
+        computer_mode = #{computerMode,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="formula != null" >
+        formula = #{formula,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.storm.luban.bean.StyleMaterial" >
+    update style_material
+    set user_id = #{userId,jdbcType=DECIMAL},
+      style_id = #{styleId,jdbcType=DECIMAL},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      type_short = #{typeShort,jdbcType=VARCHAR},
+      material_name = #{materialName,jdbcType=VARCHAR},
+      material_code = #{materialCode,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      is_formula_material = #{isFormulaMaterial,jdbcType=INTEGER},
+      computer_mode = #{computerMode,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      formula = #{formula,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.luban.bean.StyleMaterial" >
+    update style_material
+    set user_id = #{userId,jdbcType=DECIMAL},
+      style_id = #{styleId,jdbcType=DECIMAL},
+      type_code = #{typeCode,jdbcType=VARCHAR},
+      type_name = #{typeName,jdbcType=VARCHAR},
+      type_short = #{typeShort,jdbcType=VARCHAR},
+      material_name = #{materialName,jdbcType=VARCHAR},
+      material_code = #{materialCode,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      is_formula_material = #{isFormulaMaterial,jdbcType=INTEGER},
+      computer_mode = #{computerMode,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

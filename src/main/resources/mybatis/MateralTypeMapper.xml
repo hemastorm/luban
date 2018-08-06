@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.MateralTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.luban.bean.MaterialType" >
+    <id column="type_id" property="typeId" jdbcType="DECIMAL" />
+    <result column="product_id" property="productId" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="DECIMAL" />
+    <result column="compute_mode" property="computeMode" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="short_code" property="shortCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    type_id, product_id, NAME, CODE, STATUS, parent_id, compute_mode, unit, short_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from materal_type
+    where type_id = #{typeId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from materal_type
+    where type_id = #{typeId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.storm.luban.bean.MaterialType" >
+    insert into materal_type (type_id, product_id, NAME, 
+      CODE, STATUS, parent_id, 
+      compute_mode, unit, short_code
+      )
+    values (#{typeId,jdbcType=DECIMAL}, #{productId,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{parentId,jdbcType=DECIMAL}, 
+      #{computeMode,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR}, #{shortCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.luban.bean.MaterialType" >
+    insert into materal_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="computeMode != null" >
+        compute_mode,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="shortCode != null" >
+        short_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeId != null" >
+        #{typeId,jdbcType=DECIMAL},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="computeMode != null" >
+        #{computeMode,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="shortCode != null" >
+        #{shortCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.luban.bean.MaterialType" >
+    update materal_type
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=DECIMAL},
+      </if>
+      <if test="computeMode != null" >
+        compute_mode = #{computeMode,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="shortCode != null" >
+        short_code = #{shortCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.luban.bean.MaterialType" >
+    update materal_type
+    set product_id = #{productId,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=DECIMAL},
+      compute_mode = #{computeMode,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      short_code = #{shortCode,jdbcType=VARCHAR}
+    where type_id = #{typeId,jdbcType=DECIMAL}
+  </update>
+</mapper>

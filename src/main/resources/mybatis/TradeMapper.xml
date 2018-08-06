@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.TradeMapper" >
+  <resultMap id="BaseResultMap" type="com.storm.luban.bean.Trade" >
+    <id column="trade_id" property="tradeId" jdbcType="DECIMAL" />
+    <result column="user_id" property="userId" jdbcType="DECIMAL" />
+    <result column="user_nick" property="userNick" jdbcType="VARCHAR" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="payed" property="payed" jdbcType="DOUBLE" />
+    <result column="seller_memo" property="sellerMemo" jdbcType="VARCHAR" />
+    <result column="total_fee" property="totalFee" jdbcType="DOUBLE" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DOUBLE" />
+    <result column="trade_type" property="tradeType" jdbcType="TINYINT" />
+    <result column="custorm_name" property="custormName" jdbcType="VARCHAR" />
+    <result column="shipping_type" property="shippingType" jdbcType="TINYINT" />
+    <result column="shipping_fee" property="shippingFee" jdbcType="DOUBLE" />
+    <result column="receiver_name" property="receiverName" jdbcType="VARCHAR" />
+    <result column="receiver_mobile" property="receiverMobile" jdbcType="VARCHAR" />
+    <result column="receiver_state" property="receiverState" jdbcType="VARCHAR" />
+    <result column="receiver_city" property="receiverCity" jdbcType="VARCHAR" />
+    <result column="receiver_distinct" property="receiverDistinct" jdbcType="VARCHAR" />
+    <result column="receiver_address" property="receiverAddress" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modifyer" property="modifyer" jdbcType="VARCHAR" />
+    <result column="modifyed" property="modifyed" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    trade_id, user_id, user_nick, send_time, payed, seller_memo, total_fee, amount, discount_amount, 
+    trade_type, custorm_name, shipping_type, shipping_fee, receiver_name, receiver_mobile, 
+    receiver_state, receiver_city, receiver_distinct, receiver_address, note, creator, 
+    created, modifyer, modifyed
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from trade
+    where trade_id = #{tradeId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from trade
+    where trade_id = #{tradeId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.storm.luban.bean.Trade" >
+    insert into trade (trade_id, user_id, user_nick, 
+      send_time, payed, seller_memo, 
+      total_fee, amount, discount_amount, 
+      trade_type, custorm_name, shipping_type, 
+      shipping_fee, receiver_name, receiver_mobile, 
+      receiver_state, receiver_city, receiver_distinct, 
+      receiver_address, note, creator, 
+      created, modifyer, modifyed
+      )
+    values (#{tradeId,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, #{userNick,jdbcType=VARCHAR}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{payed,jdbcType=DOUBLE}, #{sellerMemo,jdbcType=VARCHAR}, 
+      #{totalFee,jdbcType=DOUBLE}, #{amount,jdbcType=DOUBLE}, #{discountAmount,jdbcType=DOUBLE}, 
+      #{tradeType,jdbcType=TINYINT}, #{custormName,jdbcType=VARCHAR}, #{shippingType,jdbcType=TINYINT}, 
+      #{shippingFee,jdbcType=DOUBLE}, #{receiverName,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, 
+      #{receiverState,jdbcType=VARCHAR}, #{receiverCity,jdbcType=VARCHAR}, #{receiverDistinct,jdbcType=VARCHAR}, 
+      #{receiverAddress,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{modifyer,jdbcType=VARCHAR}, #{modifyed,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.storm.luban.bean.Trade" >
+    insert into trade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        trade_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userNick != null" >
+        user_nick,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="payed != null" >
+        payed,
+      </if>
+      <if test="sellerMemo != null" >
+        seller_memo,
+      </if>
+      <if test="totalFee != null" >
+        total_fee,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="tradeType != null" >
+        trade_type,
+      </if>
+      <if test="custormName != null" >
+        custorm_name,
+      </if>
+      <if test="shippingType != null" >
+        shipping_type,
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee,
+      </if>
+      <if test="receiverName != null" >
+        receiver_name,
+      </if>
+      <if test="receiverMobile != null" >
+        receiver_mobile,
+      </if>
+      <if test="receiverState != null" >
+        receiver_state,
+      </if>
+      <if test="receiverCity != null" >
+        receiver_city,
+      </if>
+      <if test="receiverDistinct != null" >
+        receiver_distinct,
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="creator != null" >
+        creator,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="modifyer != null" >
+        modifyer,
+      </if>
+      <if test="modifyed != null" >
+        modifyed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="userNick != null" >
+        #{userNick,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payed != null" >
+        #{payed,jdbcType=DOUBLE},
+      </if>
+      <if test="sellerMemo != null" >
+        #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null" >
+        #{totalFee,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=TINYINT},
+      </if>
+      <if test="custormName != null" >
+        #{custormName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingType != null" >
+        #{shippingType,jdbcType=TINYINT},
+      </if>
+      <if test="shippingFee != null" >
+        #{shippingFee,jdbcType=DOUBLE},
+      </if>
+      <if test="receiverName != null" >
+        #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverState != null" >
+        #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistinct != null" >
+        #{receiverDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyer != null" >
+        #{modifyer,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyed != null" >
+        #{modifyed,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.storm.luban.bean.Trade" >
+    update trade
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="userNick != null" >
+        user_nick = #{userNick,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payed != null" >
+        payed = #{payed,jdbcType=DOUBLE},
+      </if>
+      <if test="sellerMemo != null" >
+        seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null" >
+        total_fee = #{totalFee,jdbcType=DOUBLE},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="tradeType != null" >
+        trade_type = #{tradeType,jdbcType=TINYINT},
+      </if>
+      <if test="custormName != null" >
+        custorm_name = #{custormName,jdbcType=VARCHAR},
+      </if>
+      <if test="shippingType != null" >
+        shipping_type = #{shippingType,jdbcType=TINYINT},
+      </if>
+      <if test="shippingFee != null" >
+        shipping_fee = #{shippingFee,jdbcType=DOUBLE},
+      </if>
+      <if test="receiverName != null" >
+        receiver_name = #{receiverName,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverMobile != null" >
+        receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverState != null" >
+        receiver_state = #{receiverState,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverCity != null" >
+        receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverDistinct != null" >
+        receiver_distinct = #{receiverDistinct,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAddress != null" >
+        receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null" >
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyer != null" >
+        modifyer = #{modifyer,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyed != null" >
+        modifyed = #{modifyed,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.storm.luban.bean.Trade" >
+    update trade
+    set user_id = #{userId,jdbcType=DECIMAL},
+      user_nick = #{userNick,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      payed = #{payed,jdbcType=DOUBLE},
+      seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      total_fee = #{totalFee,jdbcType=DOUBLE},
+      amount = #{amount,jdbcType=DOUBLE},
+      discount_amount = #{discountAmount,jdbcType=DOUBLE},
+      trade_type = #{tradeType,jdbcType=TINYINT},
+      custorm_name = #{custormName,jdbcType=VARCHAR},
+      shipping_type = #{shippingType,jdbcType=TINYINT},
+      shipping_fee = #{shippingFee,jdbcType=DOUBLE},
+      receiver_name = #{receiverName,jdbcType=VARCHAR},
+      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
+      receiver_state = #{receiverState,jdbcType=VARCHAR},
+      receiver_city = #{receiverCity,jdbcType=VARCHAR},
+      receiver_distinct = #{receiverDistinct,jdbcType=VARCHAR},
+      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      modifyer = #{modifyer,jdbcType=VARCHAR},
+      modifyed = #{modifyed,jdbcType=TIMESTAMP}
+    where trade_id = #{tradeId,jdbcType=DECIMAL}
+  </update>
+</mapper>

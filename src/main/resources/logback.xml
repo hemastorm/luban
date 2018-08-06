@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <property name="log.base" value="/var/tmp"/>
+	<conversionRule conversionWord="nick" converterClass="com.hexin.light.log.UserConverter"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %method %line : %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.base}/${project.artifactId}_logback.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.base}/${project.artifactId}_logback_%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %method %line : %msg%n%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="web" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.base}/${project.artifactId}_web.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.base}/${project.artifactId}_web_%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %method %line : %msg%n%n</pattern>
+        </encoder>
+    </appender>
+    <root>
+        <level value="info"/>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
