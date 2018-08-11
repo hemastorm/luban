@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.UserMaterialAttrDAO" >
+  <resultMap id="resultMap" type="com.storm.luban.bean.UserMaterialAttr" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="material_id" property="materialId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="attr_name" property="attrName" jdbcType="VARCHAR" />
+    <result column="attr_code" property="attrCode" jdbcType="VARCHAR" />
+    <result column="statue" property="statue" jdbcType="INTEGER" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="modifior" property="modifior" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="allColumn" >
+    id, material_id, user_id, attr_name, attr_code, statue, creator, created, modifier, 
+    modifior
+  </sql>
+  <insert id="insert" parameterType="com.storm.luban.bean.UserMaterialAttr" >
+    insert into metaral_attr (id, material_id, user_id, 
+      attr_name, attr_code, statue, 
+      creator, created, modifier, 
+      modifior)
+    values (#{id,jdbcType=DECIMAL}, #{materialId,jdbcType=DECIMAL}, #{userId,jdbcType=DECIMAL}, 
+      #{attrName,jdbcType=VARCHAR}, #{attrCode,jdbcType=VARCHAR}, #{statue,jdbcType=INTEGER}, 
+      #{creator,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modifior,jdbcType=TIMESTAMP})
+  </insert>
+</mapper>

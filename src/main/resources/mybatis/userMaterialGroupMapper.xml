@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.storm.luban.dao.UserMaterialGroupDAO" >
+  <resultMap id="resultMap" type="com.storm.luban.bean.UserMaterialGroup" >
+    <id column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="type_id" property="typeId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="compute_mode" property="computeMode" jdbcType="INTEGER" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="short_code" property="shortCode" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="allColumn" >
+    group_id, user_id, type_id, product_id, NAME, CODE, STATUS, parent_id, compute_mode, 
+    unit, short_code, created, creator, modified
+  </sql>
+  <insert id="insert" parameterType="com.storm.luban.bean.UserMaterialGroup" >
+    insert into user_material_group (group_id, user_id, type_id, 
+      product_id, NAME, CODE, 
+      STATUS, parent_id, compute_mode, 
+      unit, short_code, created, 
+      creator, modified)
+    values (#{groupId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{typeId,jdbcType=BIGINT}, 
+      #{productId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, #{computeMode,jdbcType=INTEGER}, 
+      #{unit,jdbcType=VARCHAR}, #{shortCode,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{modified,jdbcType=TIMESTAMP})
+  </insert>
+</mapper>
