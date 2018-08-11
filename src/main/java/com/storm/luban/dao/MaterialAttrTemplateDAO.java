@@ -16,5 +16,5 @@ public interface MaterialAttrTemplateDAO {
      * @param typeId
      * @return
      */
-    List<MaterialAttrTemplate> selectByTypeId(@Param("typeId") Long typeId);
+    List<MaterialAttrTemplate> queryByTypeId(@Param("typeId") Long typeId);
 }

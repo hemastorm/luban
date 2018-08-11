@@ -22,4 +22,6 @@ public class MaterialAttrTemplate {
 
     private int state;
 
+    private int sort;
+
 }

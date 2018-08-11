@@ -2,6 +2,7 @@ package com.storm.luban.service;
 
 import com.storm.luban.bean.MaterialAttrTemplate;
 import com.storm.luban.bean.MaterialType;
+import com.storm.luban.bean.Product;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface MaterialTypeTemplateBO {
      * 查询系统配置的所有的材料模板
      * @author storm
      * @date 2018\8\5 0005 23:35
-     * @param productId 可为空
+     * @param
      * @return
      */
     List<MaterialType> getSysMaterialType(Long productId);
@@ -31,4 +32,13 @@ public interface MaterialTypeTemplateBO {
      * @return 
      */
     List<MaterialAttrTemplate> getSysMaterialAttr(Long typeId);
+
+    /** 
+     * 查询所有的支持的产品
+     * @author storm
+     * @date 2018\8\7 0007 21:38
+     * @param  
+     * @return 
+     */
+    List<Product> getSysProduct();
 }

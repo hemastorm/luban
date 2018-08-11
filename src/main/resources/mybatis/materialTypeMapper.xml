@@ -19,7 +19,7 @@
     <sql id="allColumn">
     type_id, product_id, `NAME`, CODE, STATUS, parent_id, compute_mode, unit, short_code
   </sql>
-    <select id="getSysMaterialType" resultMap="resultMap">
+    <select id="querySysMaterialType" resultMap="resultMap">
         SELECT
         <include refid="allColumn"/>
         FROM

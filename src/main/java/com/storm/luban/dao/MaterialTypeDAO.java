@@ -17,5 +17,5 @@ public interface MaterialTypeDAO {
      * @param productId
      * @return
      */
-    List<MaterialType> getSysMaterialType(@Param("productId") Long productId);
+    List<MaterialType> querySysMaterialType(@Param("productId") Long productId);
 }
