@@ -25,6 +25,8 @@ public class MaterialType {
     private String unit;
 
     private String shortCode;
+
+    private int isLeaf;
     /**
      * 关联查询所有的属性
      */

@@ -14,6 +14,6 @@ public class UserProduct {
 
     private String code;
 
-    private int statue;
+    private int status;
 
 }

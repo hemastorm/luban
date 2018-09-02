@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * 系统配置的材料信息
+ *
  * @author storm
  * @Title: MaterialTypeTemplateBO
  * @ProjectName luban
@@ -16,29 +17,34 @@ import java.util.List;
 public interface MaterialTypeTemplateBO {
 
     /**
-     * 查询系统配置的所有的材料模板
-     * @author storm
-     * @date 2018\8\5 0005 23:35
+     * 查询系统配置的材料模板
+     *
      * @param
      * @return
+     * @author storm
+     * @date 2018\8\5 0005 23:35
      */
-    List<MaterialType> getSysMaterialType(Long productId);
-    
-    /** 
+    List<MaterialType> getSysMaterialType(Long productId, Long parentId);
+
+
+    /**
      * 查询材料类型的所有属性
+     *
+     * @param typeId 材料类型ID
+     * @return
      * @author storm
      * @date 2018\8\5 0005 23:34
-     * @param  typeId 材料类型ID
-     * @return 
      */
     List<MaterialAttrTemplate> getSysMaterialAttr(Long typeId);
 
-    /** 
+    /**
      * 查询所有的支持的产品
+     *
+     * @param
+     * @return
      * @author storm
      * @date 2018\8\7 0007 21:38
-     * @param  
-     * @return 
      */
     List<Product> getSysProduct();
+
 }

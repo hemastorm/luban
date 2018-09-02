@@ -12,10 +12,13 @@ import java.util.List;
  * @date 2018\8\6 000622:05
  */
 public interface MaterialTypeDAO {
+
     /**
-     * 查询系统初始材料种类
-     * @param productId
+     * 查询子类目
+     * @author storm
+     * @date 2018\8\11 0011 22:13
+     * @param
      * @return
      */
-    List<MaterialType> querySysMaterialType(@Param("productId") Long productId);
+    List<MaterialType> querySysMaterialType(@Param("productId") Long productId, @Param("parentId") Long parentId);
 }

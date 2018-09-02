@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.storm.luban.dao.UserProductDAO">
-    <resultMap id="BaseResultMap" type="com.storm.luban.bean.UserProduct">
+    <resultMap id="resultMap" type="com.storm.luban.bean.UserProduct">
         <id column="ID" property="id" jdbcType="BIGINT"/>
         <id column="user_id" property="userId" jdbcType="BIGINT"/>
         <result column="NAME" property="name" jdbcType="VARCHAR"/>
         <result column="CODE" property="code" jdbcType="VARCHAR"/>
-        <result column="statue" property="statue" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
     </resultMap>
-    <sql id="Base_Column_List">
-    ID,user_id, `NAME`, CODE, statue
+    <sql id="column">
+    ID,user_id, `NAME`, CODE, status
   </sql>
+    <insert id="insertUserProductBatch" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO user_product(user_id,`name`, `code`,`status`) VALUES
+        <foreach collection="products" item="product" separator=",">
+            (#{product.userId},#{product.name},#{product.code},1)
+        </foreach>
+    </insert>
+    <select id="getUserProduct" resultMap="resultMap">
+        SELECT
+        <include refid="column"/>
+        FROM user_product WHERE user_id = #{userId} AND `status` = 1
+    </select>
 </mapper>

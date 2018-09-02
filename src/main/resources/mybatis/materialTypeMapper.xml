@@ -8,16 +8,10 @@
         <result column="CODE" property="code" jdbcType="VARCHAR"/>
         <result column="STATUS" property="status" jdbcType="INTEGER"/>
         <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
-        <result column="compute_mode" property="computeMode" jdbcType="INTEGER"/>
-        <result column="unit" property="unit" jdbcType="VARCHAR"/>
-        <result column="short_code" property="shortCode" jdbcType="VARCHAR"/>
-        <collection property="attrs" column="{typeId=type_id}"
-                    ofType="com.storm.luban.bean.MaterialAttrTemplate"
-                    select="com.storm.luban.dao.MaterialAttrTemplateDAO.selectByTypeId">
-        </collection>
+        <result column="is_leaf" property="isLeaf" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="allColumn">
-    type_id, product_id, `NAME`, CODE, STATUS, parent_id, compute_mode, unit, short_code
+    type_id, product_id, `NAME`, CODE, STATUS, parent_id, is_leaf
   </sql>
     <select id="querySysMaterialType" resultMap="resultMap">
         SELECT
@@ -26,5 +20,11 @@
         material_type
         WHERE
         product_id = #{productId}
+        <if test="parentId != null">
+            AND  parent_id = #{parentId}
+        </if>
+        <if test="parentId != null">
+            AND  parent_id = -1
+        </if>
     </select>
 </mapper>

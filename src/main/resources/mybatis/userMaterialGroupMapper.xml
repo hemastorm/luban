@@ -1,36 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.storm.luban.dao.UserMaterialGroupDAO" >
-  <resultMap id="resultMap" type="com.storm.luban.bean.UserMaterialGroup" >
-    <id column="group_id" property="groupId" jdbcType="BIGINT" />
-    <result column="user_id" property="userId" jdbcType="BIGINT" />
-    <result column="type_id" property="typeId" jdbcType="BIGINT" />
-    <result column="product_id" property="productId" jdbcType="BIGINT" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
-    <result column="CODE" property="code" jdbcType="VARCHAR" />
-    <result column="STATUS" property="status" jdbcType="INTEGER" />
-    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
-    <result column="compute_mode" property="computeMode" jdbcType="INTEGER" />
-    <result column="unit" property="unit" jdbcType="VARCHAR" />
-    <result column="short_code" property="shortCode" jdbcType="VARCHAR" />
-    <result column="created" property="created" jdbcType="TIMESTAMP" />
-    <result column="creator" property="creator" jdbcType="VARCHAR" />
-    <result column="modified" property="modified" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="allColumn" >
+<mapper namespace="com.storm.luban.dao.UserMaterialGroupDAO">
+    <resultMap id="resultMap" type="com.storm.luban.bean.UserMaterialGroup">
+        <id column="group_id" property="groupId" jdbcType="BIGINT"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="type_id" property="typeId" jdbcType="BIGINT"/>
+        <result column="product_id" property="productId" jdbcType="BIGINT"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="CODE" property="code" jdbcType="VARCHAR"/>
+        <result column="STATUS" property="status" jdbcType="INTEGER"/>
+        <result column="is_sys" property="isSys" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="BIGINT"/>
+        <result column="compute_mode" property="computeMode" jdbcType="INTEGER"/>
+        <result column="unit" property="unit" jdbcType="VARCHAR"/>
+        <result column="short_code" property="shortCode" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="allColumn">
     group_id, user_id, type_id, product_id, NAME, CODE, STATUS, parent_id, compute_mode, 
-    unit, short_code, created, creator, modified
+    unit, short_code,is_sys
   </sql>
-  <insert id="insert" parameterType="com.storm.luban.bean.UserMaterialGroup" >
-    insert into user_material_group (group_id, user_id, type_id, 
+    <insert id="insert" parameterType="com.storm.luban.bean.UserMaterialGroup">
+    insert into user_material_group ( user_id, type_id,
       product_id, NAME, CODE, 
       STATUS, parent_id, compute_mode, 
-      unit, short_code, created, 
-      creator, modified)
-    values (#{groupId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{typeId,jdbcType=BIGINT}, 
-      #{productId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, #{computeMode,jdbcType=INTEGER}, 
-      #{unit,jdbcType=VARCHAR}, #{shortCode,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, 
-      #{creator,jdbcType=VARCHAR}, #{modified,jdbcType=TIMESTAMP})
+      unit, short_code,is_leaf,is_sys, created,
+      creator, modified,modifier)
+    values ( #{group.userId,jdbcType=BIGINT}, #{group.typeId,jdbcType=BIGINT},
+      #{group.productId,jdbcType=BIGINT}, #{group.name,jdbcType=VARCHAR}, #{group.code,jdbcType=VARCHAR},
+      1, #{group.parentId,jdbcType=BIGINT}, #{group.computeMode,jdbcType=INTEGER},
+      #{group.unit,jdbcType=VARCHAR}, #{group.shortCode,jdbcType=VARCHAR},#{group.isLeaf},#{group.isSys},now(),
+       #{group.creator,jdbcType=VARCHAR},now(), #{group.modifier,jdbcType=VARCHAR})
   </insert>
+    <select id="selectById" resultMap="resultMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM user_material_group
+        WHERE group_id = #{groupId}
+        AND `status` = 1
+    </select>
+    <update id="softDel">
+      UPDATE user_material_group SET `STATUS` = 0 where group_id =#{groupId}
+    </update>
+    <select id="selectUserMaterialGroups" resultMap="resultMap">
+        SELECT
+        <include refid="allColumn"/>
+        FROM user_material_group
+        WHERE user_id = #{userId}
+        AND product_id = #{productId}
+        <if test="parentId != null">
+            parent_id = #{parentId}
+        </if>
+        <if test="parentId == null">
+            parent_id = -1
+        </if>
+        AND `status`  = 1
+    </select>
 </mapper>

@@ -23,9 +23,9 @@ public class MaterialTypeTemplateBOImpl implements MaterialTypeTemplateBO {
     private ProductDAO productDAO;
 
     @Override
-    @Cacheable(value = "sysPreference", key = "#root.methodName+'_'+#productId")
-    public List<MaterialType> getSysMaterialType(Long productId) {
-        return materialTypeDAO.querySysMaterialType(productId);
+    @Cacheable(value = "sysPreference", key = "#root.methodName+'_'+#productId+'_'+#parentId")
+    public List<MaterialType> getSysMaterialType(Long productId,Long parentId) {
+        return materialTypeDAO.querySysMaterialType(productId,parentId);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MaterialTypeTemplateBOImpl implements MaterialTypeTemplateBO {
         return attrTemplateDAO.queryByTypeId(typeId);
     }
 
-    @Cacheable()
+    @Cacheable(value = "sysPreference", key = "'sysProduct'")
      public List<Product> getSysProduct(){
         return productDAO.queryProduct();
      }

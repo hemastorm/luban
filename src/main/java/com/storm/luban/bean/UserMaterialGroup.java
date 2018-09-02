@@ -29,10 +29,14 @@ public class UserMaterialGroup {
 
     private String shortCode;
 
+    private int isSys;
+
     private Date created;
 
     private String creator;
 
     private Date modified;
+
+    private String modifier;
 
 }
